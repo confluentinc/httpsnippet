@@ -43,16 +43,18 @@ module.exports = function (source, options) {
   // construct post params
   switch (source.postData.mimeType) {
     case 'multipart/form-data':
-      source.postData.params.map(function (param) {
-        var post = ''
-        if (param.fileName) {
-          post = util.format('%s=@%s', param.name, param.fileName)
-        } else {
-          post = util.format('%s=%s', param.name, param.value)
-        }
+      if (source.postData.params) {
+        source.postData.params.map(function (param) {
+          var post = ''
+          if (param.fileName) {
+            post = util.format('%s=@%s', param.name, param.fileName)
+          } else {
+            post = util.format('%s=%s', param.name, param.value)
+          }
 
-        code.push('%s %s', opts.short ? '-F' : '--form', helpers.quote(post))
-      })
+          code.push('%s %s', opts.short ? '-F' : '--form', helpers.quote(post))
+        })
+      }
       break
 
     case 'application/x-www-form-urlencoded':
