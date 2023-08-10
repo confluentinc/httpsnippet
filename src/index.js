@@ -236,7 +236,6 @@ HTTPSnippet.prototype.prepare = function (request, encodeUri = true) {
   // construct a full url
   request.fullUrl = url.format(request.uriObj)
 
-
   if (!encodeUri) {
     request.fullUrl = decodeURI(request.fullUrl)
     request.url = decodeURI(request.url)
