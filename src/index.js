@@ -15,7 +15,7 @@ var validate = require('har-validator/lib/async')
 const { formDataIterator, isBlob } = require('./helpers/form-data.js')
 
 // constructor
-var HTTPSnippet = function (data, encodeUri = true) {
+var HTTPSnippet = function (data, encodeUri = false) {
   var entries
   var self = this
   var input = Object.assign({}, data)
