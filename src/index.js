@@ -55,7 +55,7 @@ var HTTPSnippet = function (data, encodeUri = false) {
   })
 }
 
-HTTPSnippet.prototype.prepare = function (request, encodeUri = true) {
+HTTPSnippet.prototype.prepare = function (request, encodeUri = false) {
   // construct utility properties
   request.queryObj = {}
   request.headersObj = {}
