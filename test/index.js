@@ -8,6 +8,26 @@ var HTTPSnippet = require('../src')
 var should = require('should')
 
 describe('HTTPSnippet', function () {
+  it('should not have URI encoding ON by default', function (done) {
+    var req = new HTTPSnippet(fixtures.requests.full).requests[0]
+    req.fullUrl.should.eql(decodeURI(req.fullUrl))
+    req.url.should.equal(decodeURI(req.url))
+    req.uriObj.path.should.equal(decodeURI(req.uriObj.path))
+    req.uriObj.pathname.should.equal(decodeURI(req.uriObj.pathname))
+    req.uriObj.href.should.equal(decodeURI(req.uriObj.href))
+    done()
+  })
+
+  it('should have URI encoding ON when the flag is set', function (done) {
+    var req = new HTTPSnippet(fixtures.requests.full, true).requests[0]
+    req.fullUrl.should.eql(encodeURI(req.fullUrl))
+    req.url.should.equal(encodeURI(req.url))
+    req.uriObj.path.should.equal(encodeURI(req.uriObj.path))
+    req.uriObj.pathname.should.equal(encodeURI(req.uriObj.pathname))
+    req.uriObj.href.should.equal(encodeURI(req.uriObj.href))
+    done()
+  })
+
   it('should return false if no matching target', function (done) {
     var snippet = new HTTPSnippet(fixtures.requests.short)
 
