@@ -237,11 +237,12 @@ HTTPSnippet.prototype.prepare = function (request, encodeUri = false) {
   request.fullUrl = url.format(request.uriObj)
 
   if (!encodeUri) {
-    request.fullUrl = decodeURI(request.fullUrl)
+    request.fullUrl = decodeURIComponent(request.fullUrl)
     request.url = decodeURI(request.url)
-    request.uriObj.path = decodeURI(request.uriObj.path)
+    request.uriObj.path = decodeURIComponent(request.uriObj.path)
     request.uriObj.pathname = decodeURI(request.uriObj.pathname)
     request.uriObj.href = decodeURI(request.uriObj.href)
+    request.uriObj.search = decodeURIComponent(request.uriObj.search)
   }
 
   return request
