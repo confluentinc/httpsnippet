@@ -6,25 +6,27 @@ var fixtures = require('./fixtures')
 var HTTPSnippet = require('../src')
 
 var should = require('should')
+var url = require('url')
 
 describe('HTTPSnippet', function () {
   it('should not have URI encoding ON by default', function (done) {
-    var req = new HTTPSnippet(fixtures.requests.full).requests[0]
-    req.fullUrl.should.eql(decodeURI(req.fullUrl))
+    var req = new HTTPSnippet(fixtures.requests.query).requests[0]
+    req.fullUrl.should.eql(decodeURIComponent(req.fullUrl))
     req.url.should.equal(decodeURI(req.url))
-    req.uriObj.path.should.equal(decodeURI(req.uriObj.path))
+    req.uriObj.path.should.equal(decodeURIComponent(req.uriObj.path))
     req.uriObj.pathname.should.equal(decodeURI(req.uriObj.pathname))
     req.uriObj.href.should.equal(decodeURI(req.uriObj.href))
+    req.uriObj.search.should.equal(decodeURIComponent(req.uriObj.search))
     done()
   })
 
   it('should have URI encoding ON when the flag is set', function (done) {
-    var req = new HTTPSnippet(fixtures.requests.full, true).requests[0]
-    req.fullUrl.should.eql(encodeURI(req.fullUrl))
+    var req = new HTTPSnippet(fixtures.requests.query, true).requests[0]
     req.url.should.equal(encodeURI(req.url))
-    req.uriObj.path.should.equal(encodeURI(req.uriObj.path))
     req.uriObj.pathname.should.equal(encodeURI(req.uriObj.pathname))
     req.uriObj.href.should.equal(encodeURI(req.uriObj.href))
+    req.uriObj.path.should.equal(encodeURI(req.uriObj.pathname) + '?' + req.uriObj.search)
+    req.fullUrl.should.equal(url.format(req.uriObj))
     done()
   })
 
