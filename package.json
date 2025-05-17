@@ -88,6 +88,6 @@
     "fs-writefile-promise": "^1.0.3",
     "har-validator": "^5.0.0",
     "pinkie-promise": "^2.0.0",
-    "stringify-object": "^3.3.0"
+    "stringify-object": "^5.0.0"
   }
 }
