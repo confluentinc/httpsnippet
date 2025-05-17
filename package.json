@@ -85,7 +85,7 @@
     "event-stream": "3.3.5",
     "form-data": "3.0.3",
     "fs-readfile-promise": "^2.0.1",
-    "fs-writefile-promise": "^1.0.3",
+    "fs-writefile-promise": "^3.0.0",
     "har-validator": "^5.0.0",
     "pinkie-promise": "^2.0.0",
     "stringify-object": "^3.3.0"
