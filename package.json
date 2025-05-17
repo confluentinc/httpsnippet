@@ -79,7 +79,7 @@
     "standard": "^10.0.2"
   },
   "dependencies": {
-    "chalk": "^1.1.1",
+    "chalk": "^5.0.0",
     "commander": "^2.9.0",
     "debug": "^2.2.0",
     "event-stream": "3.3.5",
